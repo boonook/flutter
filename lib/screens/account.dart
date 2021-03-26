@@ -112,7 +112,7 @@ class AccountState extends State<AccountScreen> {
                       itemBuilder: (context, index) {
                         Widget tip = Text("");
                         // 当渲染到最后一条数据时，加载动画提示
-                        if (index == this._list.length - 1) {
+                        if(index == this._list.length - 1) {
                           tip = _getMoreWidget();
                         }
                         return Column(

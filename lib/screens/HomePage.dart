@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../components/HeaderAppBar.dart';
-import '../components/HomeChild.dart';
-import '../events/count_events.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,15 +7,6 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  String data = "无";
-  String dataTwo = "传递给组件2的值";
-
-  void onChanged(val) {
-    setState(() {
-      data = val;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,20 +20,38 @@ class HomePageState extends State<HomePage> {
         elevation: 1,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child:Column(
           children: <Widget>[
-            Text("首页"),
-            RaisedButton(
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              child: Text("打开侧边栏"),
+            Expanded(
+              child:Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Text('主体内容1-1'), flex: 1,
+                  ),
+                  Expanded(
+                    child: Text('主体内容1-2'), flex: 1,
+                  )
+                ]
+              )
             ),
-            Text('子组件2，传过来的值:' + '$data'),
-            HomeChild()
-          ],
-        ),
+            Expanded(
+              child:Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Text('主体内容2-1'), flex: 1,
+                  ),
+                  Expanded(
+                    child: Text('主体内容2-2'), flex: 1,
+                  )
+                ]
+              )
+            ),
+          ]
+        )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
     );
   }
