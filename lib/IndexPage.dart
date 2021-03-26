@@ -63,7 +63,7 @@ class _IndexPageState extends State<IndexPage> {
       headerChild,
       getNavItem(Icons.settings, "Settings", 'router/setting'),
       getNavItem(Icons.home, "Home", "router/home"),
-      getNavItem(Icons.home, "Account", "router/account"),
+      // getNavItem(Icons.home, "Account", "router/account"),
       aboutChild
     ];
     ListView listView = ListView(children: myNavChildren);
