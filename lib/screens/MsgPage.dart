@@ -67,6 +67,39 @@ class MsgPage extends StatelessWidget {
                   ),
                 ),
               ]
+            ),
+            MaterialButton(
+              color:Colors.blue,
+              child:Text('点我'),
+              onPressed: () {
+                showDialog<Null>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SimpleDialog(
+                      title:Text('选择'),
+                      children: <Widget>[
+                        SimpleDialogOption(
+                          child:Text('选项 1'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        SimpleDialogOption(
+                          child:Text('选项 2'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                ).then((val) {
+                  print(val);
+                });
+              },
+            ),
+            Container(
+              
             )
           ]
         ),
