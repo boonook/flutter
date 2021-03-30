@@ -1,6 +1,103 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:dio/dio.dart';
+class MsgPage extends StatefulWidget {
+  @override
+  MsgPageState createState() => MsgPageState();
+}
 
-class MsgPage extends StatelessWidget {
+class MsgPageState extends State<MsgPage> {
+    // 当前页数
+  int _page = 1;
+  // 页面数据
+  List _list = [];
+  // 是否还有
+  bool _hasMore = true;
+
+  // 滚动控制器
+  ScrollController _scrollController = new ScrollController();
+  @override
+  void initState() {
+    super.initState();
+    this._getData();
+    // 监听滚动事件
+    _scrollController.addListener(() {
+      // 获取滚动条下拉的距离
+      // print(_scrollController.position.pixels);
+      // 获取整个页面的高度
+      // print(_scrollController.position.maxScrollExtent);
+      if (_scrollController.position.pixels >
+          _scrollController.position.maxScrollExtent - 40) {
+        this._getData();
+      }
+    });
+  }
+
+  // 获取数据列表
+  void _getData() async {
+    if (this._hasMore) {
+      var url =
+          "https://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=${_page}";
+      Response result = await Dio().get(url);
+      var list = json.decode(result.data)["result"];
+
+      setState(() {
+        // 拼接数据
+        this._list.addAll(list);
+        // 页数累加
+        this._page++;
+      });
+
+      if (list.length < 20) {
+        setState(() {
+          // 关闭加载
+          this._hasMore = false;
+        });
+      }
+    }
+  }
+
+  // 下拉刷新
+  Future<void> _onRefresh() async {
+    print("下拉刷新");
+    // 持续两秒
+    await Future.delayed(Duration(milliseconds: 2000), () {
+      this._getData();
+    });
+  }
+
+  // 加载动画
+  Widget _getMoreWidget() {
+    // 如果还有数据
+    if (this._hasMore) {
+      return Center(
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                '加载中',
+                style: TextStyle(fontSize: 14.0),
+              ),
+              // 加载图标
+              CircularProgressIndicator(
+                strokeWidth: 1.0,
+              )
+            ],
+          ),
+        ),
+      );
+    } else {
+      return Center(
+        child: Text("...我是有底线的..."),
+      );
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -8,101 +105,36 @@ class MsgPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('消息中心'),
         ),
-        body:ListView(
-          children:<Widget>[
-            Stack(
-              children: <Widget> [
-                Image.network('http://img2.cxtuku.com/00/13/12/s97783873391.jpg'),
-                Positioned(
-                  left: 35.0,
-                  right: 35.0,
-                  top: 45.0,
-                  child:Text(
-                    'Whatever is worth doing is worth doing well. ๑•ิ.•ั๑',
-                    style:TextStyle(
-                      fontSize: 20.0,
-                      fontFamily: 'serif',
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: 35.0,
-                  right: 35.0,
-                  top: 90.0,
-                  child: Text(
-                    '定位',
-                    style:TextStyle(
-                      fontSize: 20.0,
-                      fontFamily: 'serif',
-                    )
-                  ),
-                ),
-              ]
-            ),
-            Stack(
-              children: <Widget> [
-                Image.network('http://img2.cxtuku.com/00/13/12/s97783873391.jpg'),
-                Positioned(
-                  left: 35.0,
-                  right: 35.0,
-                  top: 45.0,
-                  child:Text(
-                    'Whatever is worth doing is worth doing well. ๑•ิ.•ั๑',
-                    style:TextStyle(
-                      fontSize: 20.0,
-                      fontFamily: 'serif',
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: 35.0,
-                  right: 35.0,
-                  top: 90.0,
-                  child: Text(
-                    '定位',
-                    style:TextStyle(
-                      fontSize: 20.0,
-                      fontFamily: 'serif',
-                    )
-                  ),
-                ),
-              ]
-            ),
-            MaterialButton(
-              color:Colors.blue,
-              child:Text('点我'),
-              onPressed: () {
-                showDialog<Null>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return SimpleDialog(
-                      title:Text('选择'),
-                      children: <Widget>[
-                        SimpleDialogOption(
-                          child:Text('选项 1'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        SimpleDialogOption(
-                          child:Text('选项 2'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                ).then((val) {
-                  print(val);
-                });
-              },
-            ),
-            Container(
-              
-            )
-          ]
-        ),
+        body: this._list.length == 0
+        ? this._getMoreWidget()
+        : RefreshIndicator(
+          child: ListView.builder(
+            // 上拉加载控制器
+            controller: _scrollController,
+            itemCount: this._list.length,
+            itemBuilder: (context, index) {
+              Widget tip = Text("");
+              // 当渲染到最后一条数据时，加载动画提示
+              if(index == this._list.length - 1) {
+                tip = _getMoreWidget();
+              }
+              return Column(
+                children: <Widget>[
+                  ListTile(
+                      title: Text(
+                    "${this._list[index]["title"]}",
+                    maxLines: 1,
+                  )),
+                  Divider(),
+                  // 加载提示
+                  tip
+                ],
+              );
+            },
+          ),
+          // 下拉刷新事件
+          onRefresh: this._onRefresh
+        )
       ),
     );
   }

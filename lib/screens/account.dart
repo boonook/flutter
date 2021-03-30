@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'dart:convert';
-// import 'package:dio/dio.dart';
+import 'dart:convert';
+import 'package:dio/dio.dart';
 
 class AccountScreen extends StatefulWidget {
   @override
@@ -36,26 +36,26 @@ class AccountState extends State<AccountScreen> {
 
   // 获取数据列表
   void _getData() async {
-    // if (this._hasMore) {
-    //   var url =
-    //       "https://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=${_page}";
-    //   Response result = await Dio().get(url);
-    //   var list = json.decode(result.data)["result"];
+    if (this._hasMore) {
+      var url =
+          "https://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=${_page}";
+      Response result = await Dio().get(url);
+      var list = json.decode(result.data)["result"];
 
-    //   setState(() {
-    //     // 拼接数据
-    //     this._list.addAll(list);
-    //     // 页数累加
-    //     this._page++;
-    //   });
+      setState(() {
+        // 拼接数据
+        this._list.addAll(list);
+        // 页数累加
+        this._page++;
+      });
 
-    //   if (list.length < 20) {
-    //     setState(() {
-    //       // 关闭加载
-    //       this._hasMore = false;
-    //     });
-    //   }
-    // }
+      if (list.length < 20) {
+        setState(() {
+          // 关闭加载
+          this._hasMore = false;
+        });
+      }
+    }
   }
 
   // 下拉刷新
