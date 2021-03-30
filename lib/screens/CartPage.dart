@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class CartPage extends StatelessWidget {
   @override
@@ -52,7 +53,10 @@ class CartPage extends StatelessWidget {
               child:Column(
                 children:<Widget>[
                   Container(
-                    child:Image( image: NetworkImage( "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4")),
+                    child:FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: 'https://picsum.photos/250?image=9',
+                    ),
                     padding:const EdgeInsets.only(left:15,right:15,top:15),
                   ),
                   Container(
@@ -69,7 +73,10 @@ class CartPage extends StatelessWidget {
               child:Column(
                 children:<Widget>[
                   Container(
-                    child:Image( image: NetworkImage( "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4")),
+                    child:FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: 'https://picsum.photos/250?image=9',
+                    ),
                     padding:const EdgeInsets.only(left:15,right:15,top:15),
                   ),
                   Container(
@@ -86,7 +93,10 @@ class CartPage extends StatelessWidget {
               child:Column(
                 children:<Widget>[
                   Container(
-                    child:Image( image: NetworkImage( "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4")),
+                    child:FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: 'https://picsum.photos/250?image=9',
+                    ),
                     padding:const EdgeInsets.only(left:15,right:15,top:15),
                   ),
                   Container(
