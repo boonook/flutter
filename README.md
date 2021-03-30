@@ -10,6 +10,13 @@
 flutter run --no-sound-null-safety
 ```
 
+# 依赖包查询
 ```bash
     pub.dev
+```
+
+# 安装依赖包
+
+```bash
+    flutter packages get
 ```

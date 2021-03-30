@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         "router/home": (_) => IndexPage(),
         "router/login": (_) => LoginScreen(),
-        // "router/account": (_) => AccountScreen(),
+        "router/account": (_) => AccountScreen(),
         "router/setting": (_) => SettingsScreen(),
       },
     );

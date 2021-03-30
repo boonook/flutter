@@ -3,6 +3,7 @@ import 'screens/CartPage.dart';
 import 'screens/HomePage.dart';
 import 'screens/MsgPage.dart';
 import 'screens/PersonPage.dart';
+import 'screens/PersonPage.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -62,8 +63,8 @@ class _IndexPageState extends State<IndexPage> {
     var myNavChildren = [
       headerChild,
       getNavItem(Icons.settings, "Settings", 'router/setting'),
-      getNavItem(Icons.home, "Home", "router/home"),
-      // getNavItem(Icons.home, "Account", "router/account"),
+      // getNavItem(Icons.home, "Home", "router/home"),
+      getNavItem(Icons.home, "Account", "router/account"),
       aboutChild
     ];
     ListView listView = ListView(children: myNavChildren);
