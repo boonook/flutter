@@ -77,9 +77,12 @@ class MsgPageState extends State<MsgPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(
-                '加载中',
-                style: TextStyle(fontSize: 14.0),
+              Container(
+                child:Text(
+                  '加载中',
+                  style: TextStyle(fontSize: 14.0),
+                ),
+                margin:const EdgeInsets.only(bottom:10),
               ),
               // 加载图标
               CircularProgressIndicator(
