@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import './ChildOne.dart';
+import '../../Utils/tools.dart';
 
 class Parents extends StatefulWidget {
   @override
@@ -19,6 +21,16 @@ class ParentsState extends State<Parents> {
 
   @override
   void initState() {
+    tools.json();
+    Fluttertoast.showToast(
+      msg: "This is Center Short Toast",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0
+    );
     print('--------------------------------------默认触发函数0000------------------------------------------------');
   }
 
