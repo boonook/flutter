@@ -3,6 +3,7 @@ import 'IndexPage.dart';
 import 'package:my_app/screens/account.dart';
 import 'package:my_app/screens/settings.dart';
 import 'package:my_app/screens/LoginPage.dart';
+import './screens/componentCommunication/Parents.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         "router/login": (_) => LoginScreen(),
         "router/account": (_) => AccountScreen(),
         "router/setting": (_) => SettingsScreen(),
+        "router/parents": (_) => Parents(),
       },
     );
   }
