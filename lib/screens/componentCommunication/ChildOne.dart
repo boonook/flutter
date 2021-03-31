@@ -29,13 +29,15 @@ class ChildOneState extends State<ChildOne> {
           child: Text('子组件向父组件传值'),
         ),
         Container(
-          child: RaisedButton(
-            child: Text('子组件向父组件传值:ChildOne'),
+          child: TextButton(
+            child: Text('子组件向父组件传值:ChildOne',style: TextStyle(color: Colors.white, fontSize: 16)),
             onPressed: () {
               widget.callBack('ChildOne');
             },
-            textColor: Colors.white,
-            color: Colors.blue[200],
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all(EdgeInsets.all(30)),
+              backgroundColor:MaterialStateProperty.all(Colors.orange),
+            ),
           ),
         ),
         Container(
