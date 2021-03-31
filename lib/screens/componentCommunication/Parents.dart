@@ -18,6 +18,11 @@ class ParentsState extends State<Parents> {
   }
 
   @override
+  void initState() {
+    print('--------------------------------------默认触发函数0000------------------------------------------------');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
