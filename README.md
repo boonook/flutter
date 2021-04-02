@@ -20,3 +20,8 @@ flutter run --no-sound-null-safety
 ```bash
     flutter packages get
 ```
+
+# 刷新
+```bash
+  https://github.com/xuelongqy/flutter_easyrefresh
+```
