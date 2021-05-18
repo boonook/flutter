@@ -35,6 +35,8 @@ dependencies:
   mobx: ^2.0.0
   flutter_mobx: ^2.0.0
   mobx_codegen: ^2.0.0
+  path_provider: ^2.0.1
+  filesize: ^2.0.1
   # add this line to your dependencies
 dev_dependencies:
   flutter_test:
