@@ -10,6 +10,12 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
   static const String routeName = "login";
+  dynamic phone = '';
+  static const kYellow = const Color(0xFF444444);
+  static const kRed = const Color(0xFFd32F2F);
+  final TextEditingController _controller = new TextEditingController();
+  final TextEditingController _passwordEditingController =
+      new TextEditingController();
   final Counter counter = Counter();
   @override
   void initState() {
@@ -34,7 +40,8 @@ class LoginScreenState extends State<LoginScreen> {
             new Text("点击跳转"),
             new RaisedButton(
               onPressed: () {
-                Navigator.of(context).pushReplacementNamed("router/home");
+                // Navigator.of(context).pushReplacementNamed("router/home");
+                print(phone);
               },
               child: Text("跳转"),
             ),
@@ -50,9 +57,67 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   ElevatedButton(
                       onPressed: counter.increment,
-                      child: const Text('Add Counter'))
+                      child: const Text('Add Counter')),
                 ],
               ),
+            ),
+            Container(
+              child: Column(
+                children: <Widget>[
+                  new TextField(
+                    controller: _controller,
+                    style: TextStyle(fontSize: 16, color: kYellow),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.phone,
+                    cursorColor: kYellow,
+                    decoration: new InputDecoration(
+                      hintText: '请输入手机号',
+                      labelText: "手机号",
+                      labelStyle: TextStyle(color: kYellow),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            color: kYellow, width: 3, style: BorderStyle.solid),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            color: kRed, width: 1, style: BorderStyle.solid),
+                      ),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        phone = value;
+                      });
+                      print(value);
+                    },
+                  ),
+                ],
+              ),
+              margin: const EdgeInsets.only(top: 30, right: 16, left: 16),
+            ),
+            Container(
+              child: Column(children: <Widget>[
+                new TextField(
+                  controller: _passwordEditingController,
+                  style: TextStyle(fontSize: 16, color: kYellow),
+                  keyboardType: TextInputType.visiblePassword,
+                  decoration: new InputDecoration(
+                    hintText: '请输入密码',
+                    labelText: "密码",
+                    labelStyle: TextStyle(color: kYellow),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(
+                          color: kYellow, width: 3, style: BorderStyle.solid),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    print(value);
+                  },
+                ),
+              ]),
+              margin: const EdgeInsets.only(top: 30, right: 16, left: 16),
             )
           ],
         ),
