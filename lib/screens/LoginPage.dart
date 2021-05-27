@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../Store/counter.dart';
 
@@ -21,6 +22,21 @@ class LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     print('login');
+    getHttp();
+  }
+
+  void getHttp() async {
+    Dio dio = new Dio();
+
+    ///请求地址 获取用户列表
+    String url =
+        "https://v1.alapi.cn/api/music/search?keyword=%E6%88%91%E7%88%B1%E4%BD%A0";
+
+    ///发起get请求
+    Response response = await dio.get(url);
+
+    ///响应数据
+    print(response);
   }
 
   LoginScreenState() {
