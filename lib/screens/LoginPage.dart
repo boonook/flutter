@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../Store/counter.dart';
+import 'package:my_app/Config/Contant.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen();
@@ -23,6 +24,7 @@ class LoginScreenState extends State<LoginScreen> {
     super.initState();
     print('login');
     getHttp();
+    print(Contant.apiPrefix);
   }
 
   void getHttp() async {
