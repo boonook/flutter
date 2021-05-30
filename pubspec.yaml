@@ -32,6 +32,7 @@ dependencies:
   image_picker: ^0.7.3
   transparent_image: ^2.0.0
   fluttertoast: ^8.0.3
+  bot_toast: ^4.0.1
   mobx: ^2.0.0
   flutter_mobx: ^2.0.0
   mobx_codegen: ^2.0.0

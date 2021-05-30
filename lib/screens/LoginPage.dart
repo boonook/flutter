@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../Store/counter.dart';
 import 'package:my_app/Config/Contant.dart';
+import 'package:my_app/Utils/http.dart';
+import 'dart:convert';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen();
@@ -28,17 +29,9 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   void getHttp() async {
-    Dio dio = new Dio();
-
-    ///请求地址 获取用户列表
-    String url =
-        "https://v1.alapi.cn/api/music/search?keyword=%E6%88%91%E7%88%B1%E4%BD%A0";
-
-    ///发起get请求
-    Response response = await dio.get(url);
-
-    ///响应数据
-    print(response);
+    var url = 'api/music/search?keyword=我爱你';
+    dynamic data = await http.requestData(url, {}, {});
+    print('123123123123123123' + json.encode(data));
   }
 
   LoginScreenState() {
@@ -58,8 +51,8 @@ class LoginScreenState extends State<LoginScreen> {
             new Text("点击跳转"),
             new RaisedButton(
               onPressed: () {
-                // Navigator.of(context).pushReplacementNamed("router/home");
-                print(phone);
+                Navigator.of(context).pushReplacementNamed("router/home");
+                // print(phone);
               },
               child: Text("跳转"),
             ),

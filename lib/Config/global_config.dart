@@ -18,7 +18,7 @@ class GlobalConfig {
   static bool isDebug = false; //是否是调试模式
 
   /// 生产服务器地址
-  static String production = "http://119.45.34.22:8080";
+  static String production = "https://v1.alapi.cn";
   // static String production = "http://api.mtm.bet";
   // static String production = "http://192.168.1.181:8088/";
   static String imgHost = "http://45.64.54.189/";

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'dart:io';
 import 'IndexPage.dart';
 import 'package:my_app/screens/account.dart';
 import 'package:my_app/screens/settings.dart';
@@ -6,6 +9,13 @@ import 'package:my_app/screens/LoginPage.dart';
 import './screens/componentCommunication/Parents.dart';
 
 void main() {
+  //设置安卓状态栏透明
+  if (Platform.isAndroid) {
+    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+      statusBarColor: Color(0x00000000), //设置为透明
+    );
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
   runApp(MyApp());
 }
 
@@ -18,6 +28,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      builder: BotToastInit(),
+      navigatorObservers: [BotToastNavigatorObserver()],
       home: LoginScreen(),
       routes: <String, WidgetBuilder>{
         "router/home": (_) => IndexPage(),
