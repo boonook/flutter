@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../Utils/cache_util.dart';
-import '../Utils/tools.dart';
 
 class PersonPage extends StatefulWidget {
   const PersonPage();
@@ -13,36 +11,6 @@ class PersonPageState extends State<PersonPage> {
   void initState() {
     super.initState();
     print('123123123123123123123');
-    initCache();
-  }
-
-  dynamic cacheSize = {};
-  Future<void> initCache() async {
-    /// 获取缓存大小
-    int size = await CacheUtil.total();
-    print(size);
-
-    /// 复制变量
-    cacheSize.value = size;
-  }
-
-  Future<void> handleClearCache() async {
-    try {
-      if (cacheSize.value <= 0) throw '没有缓存可清理';
-
-      /// 给予适当的提示
-      /// bool confirm = await showDialog();
-      /// if (confirm != true) return;
-
-      /// 执行清除缓存
-      await CacheUtil.clear();
-
-      /// 更新缓存
-      await initCache();
-      tools.showToast('缓存清除成功');
-    } catch (e) {
-      tools.showToast(e);
-    }
   }
 
   @override

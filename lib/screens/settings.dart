@@ -29,6 +29,14 @@ class SettingsScreen extends StatelessWidget {
                   },
                   child: Text("前往组件交互页面"),
                 ),
+              ),
+              Container(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("router/flexbuju");
+                  },
+                  child: Text("flex布局"),
+                ),
               )
               // Container(
 
