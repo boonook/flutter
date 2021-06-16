@@ -1,4 +1,4 @@
-part of 'counter.dart';
+part of 'auth/auth.dart';
 
 mixin _$Counter on _Counter, Store {
   final _$valueAtom = Atom(name: '_Counter.value');

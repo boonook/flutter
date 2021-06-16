@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:core';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import '../Store/counter.dart';
+import 'package:my_app/Store/counter.dart';
 import 'package:my_app/Config/Contant.dart';
 import 'package:my_app/Utils/http.dart';
-import 'dart:convert';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen();
