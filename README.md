@@ -55,3 +55,8 @@ color: Color(0xFF5e12a9)
 修改环境变量
 open  ~/.bash_profile
 ```
+
+```
+自动生成.g.dart文件
+flutter packages pub run build_runner build --delete-conflicting-outputs
+```
