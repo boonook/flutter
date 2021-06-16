@@ -21,35 +21,41 @@ class LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordEditingController =
       new TextEditingController();
   final Counter counter = Counter();
+  var songs = [];
   final List formList = [
     {"title": '123123123'},
     {"title": '123123123'},
     {"title": '123123123'}
   ];
+  List dataList = [];
   @override
   void initState() {
     super.initState();
     print('login');
-    getHttp();
     print(Contant.apiPrefix);
+    this.getHttp().then((value) {
+      setState(() {
+        dataList = value;
+      });
+    });
   }
 
-  void getHttp() async {
-    var url = 'api/music/search?keyword=我爱你';
-    dynamic data = await http.requestData(url, {}, {});
-    print('123123123123123123' + json.encode(data));
-  }
-
-  LoginScreenState() {
-    // print('123123');
+  Future getHttp() async {
+    try {
+      var url = 'api/music/search?keyword=我爱你';
+      dynamic data = await http.requestData(url, {}, {});
+      return data['songs'];
+    } catch (e) {
+      return print(e);
+    }
   }
 
   Widget buildGrade() {
     List<Widget> titles = [];
     Widget content;
-    formList.forEach((element) {
+    dataList.forEach((element) {
       titles.add(new Row(
-        children: <Widget>[new Text('123123123123')],
+        children: <Widget>[new Text(element['name'])],
       ));
     });
     content = new Column(
