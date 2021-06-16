@@ -63,6 +63,10 @@ class LoginScreenState extends State<LoginScreen> {
     return content;
   }
 
+  getToken() {
+    print(counter.userToken);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,7 +87,7 @@ class LoginScreenState extends State<LoginScreen> {
             ),
             new RaisedButton(
               onPressed: () {
-                getHttp();
+                getToken();
                 // print(phone);
               },
               child: Text("重新加载"),
