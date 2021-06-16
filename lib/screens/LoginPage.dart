@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:core';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../Store/counter.dart';
 import 'package:my_app/Config/Contant.dart';
@@ -20,6 +21,11 @@ class LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordEditingController =
       new TextEditingController();
   final Counter counter = Counter();
+  final List formList = [
+    {"title": '123123123'},
+    {"title": '123123123'},
+    {"title": '123123123'}
+  ];
   @override
   void initState() {
     super.initState();
@@ -35,7 +41,21 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   LoginScreenState() {
-    print('123123');
+    // print('123123');
+  }
+
+  Widget buildGrade() {
+    List<Widget> titles = [];
+    Widget content;
+    formList.forEach((element) {
+      titles.add(new Row(
+        children: <Widget>[new Text('123123123123')],
+      ));
+    });
+    content = new Column(
+      children: titles,
+    );
+    return content;
   }
 
   @override
@@ -55,6 +75,13 @@ class LoginScreenState extends State<LoginScreen> {
                 // print(phone);
               },
               child: Text("跳转"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                getHttp();
+                // print(phone);
+              },
+              child: Text("重新加载"),
             ),
             Container(
               child: Column(
@@ -129,6 +156,9 @@ class LoginScreenState extends State<LoginScreen> {
                 ),
               ]),
               margin: const EdgeInsets.only(top: 30, right: 16, left: 16),
+            ),
+            Container(
+              child: buildGrade(),
             )
           ],
         ),

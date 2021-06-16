@@ -31,30 +31,27 @@ class http {
     ///初始化请求类
     Dio dio = new Dio();
     print(url);
-    BotToast.showAttachedWidget(
-        attachedBuilder: (_) => Card(
-              color: Color(0x8c000000), // 背景色
-              child: Container(
-                width: 120,
-                height: 120,
-                alignment: Alignment.center,
-                child: Center(
-                    child: Column(children: <Widget>[
-                  Icon(
-                    Icons.favorite,
-                    color: Colors.pink,
-                    size: 24.0,
-                    semanticLabel: 'Text to announce in accessibility modes',
-                  ),
-                  Container(
-                    child: Text("loading...",
-                        style: TextStyle(color: Colors.white, fontSize: 14)),
-                  ),
-                ])),
-              ),
+    // BotToast.showLoading();
+    BotToast.showCustomLoading(toastBuilder: (context) {
+      return Container(
+        decoration: BoxDecoration(
+            color: Color(0x7f000000), borderRadius: BorderRadius.circular(5)),
+        width: 100,
+        height: 100,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            CircularProgressIndicator(
+              backgroundColor: Colors.white,
             ),
-        duration: Duration(seconds: 20),
-        target: Offset(520, 520));
+            Text(
+              "loading...",
+              style: new TextStyle(color: Color(0xffffffff)),
+            )
+          ],
+        ),
+      );
+    });
 
     ///头部
     Map<String, String> headers = new HashMap();
@@ -76,7 +73,9 @@ class http {
       ///开始请求
       response =
           await dio.request("$baseUrl$url", data: params, options: option);
+      BotToast.cleanAll();
     } on DioError catch (e) {
+      BotToast.cleanAll();
       if (e.response != null) {
       } else {}
       if (needError) {

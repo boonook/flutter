@@ -50,3 +50,8 @@ color: Color(0xFF5e12a9)
 95%=0c 
 100%=00（全透明）
 ````
+
+```
+修改环境变量
+open  ~/.bash_profile
+```
