@@ -3,7 +3,6 @@ import 'screens/CartPage.dart';
 import 'screens/HomePage.dart';
 import 'screens/MsgPage.dart';
 import 'screens/PersonPage.dart';
-import 'screens/PersonPage.dart';
 
 class IndexPage extends StatefulWidget {
   @override

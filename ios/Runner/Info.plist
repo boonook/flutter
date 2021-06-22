@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App需要您的同意，才能访问您的麦克风</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App需要您的同意，才能定位您的当前位置</string>
+	<key>NSContactsUsageDescription</key>
+	<string>App需要您的同意，才能访问通讯录</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App需要您的同意，才能访问相机</string>
+	<key>NSCameraUsageDescription</key>
+	<string>App需要您的同意，才能访问相册</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
