@@ -46,6 +46,8 @@ dependencies:
   image_gallery_saver: ^1.6.9
   barcode_scan2: ^4.1.3
   permission_handler: ^8.1.1
+  flutter_cache_manager: ^3.1.2
+  cached_network_image: ^3.0.0
   # add this line to your dependencies
 dev_dependencies:
   flutter_test:

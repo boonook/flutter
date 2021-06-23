@@ -3,6 +3,10 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'dart:ui' as ui;
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/rendering.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen();
@@ -17,6 +21,7 @@ class SettingsScreenState extends State<SettingsScreen> {
     this.checkPermission();
   }
 
+  GlobalKey _globalKey = new GlobalKey();
   static const String routeName = "setting";
   var _image;
   final picker = ImagePicker();
@@ -55,14 +60,6 @@ class SettingsScreenState extends State<SettingsScreen> {
           });
       return;
     }
-
-    ///打开应用设置：
-    openAppSettings();
-    ////
-    // You can can also directly ask the permission about its status.
-    if (await Permission.location.isRestricted) {
-      // The OS restricts access, for example because of parental controls.
-    }
   }
 
   Future getImage() async {
@@ -74,6 +71,36 @@ class SettingsScreenState extends State<SettingsScreen> {
         print('No image selected.');
       }
     });
+  }
+
+  Future saveQrImage() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.storage,
+    ].request();
+    var status = await Permission.storage.status;
+    print(status);
+    if (status.isDenied) {
+      openAppSettings(); // 没有权限打开设置页面
+    } else {
+      capturePng(); // 已有权限开始保存
+    }
+  }
+
+  Future capturePng() async {
+    try {
+      print('开始保存');
+      final boundary = _globalKey.currentContext!.findRenderObject()
+          as RenderRepaintBoundary;
+      ui.Image image = await boundary.toImage();
+      var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      var result =
+          await ImageGallerySaver.saveImage(byteData!.buffer.asUint8List());
+      print(result); // result是图片地址
+      BotToast.showSimpleNotification(title: '保存成功');
+    } catch (e) {
+      print(e);
+    }
+    return null;
   }
 
   @override
@@ -134,12 +161,27 @@ class SettingsScreenState extends State<SettingsScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                QrImage(
-                  data: "这是中间有图的二维码",
-                  size: 100,
-                  embeddedImage: NetworkImage(""
-                      "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2491682377,1019940373&fm=26&gp=0.jpg"),
+                RepaintBoundary(
+                  key: _globalKey,
+                  child: QrImage(
+                    data: "这是中间有图的二维码",
+                    size: 100,
+                    embeddedImage: NetworkImage(""
+                        "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2491682377,1019940373&fm=26&gp=0.jpg"),
+                  ),
                 ),
+                //随便写个按钮什么的截图
+                RaisedButton(
+                  color: Colors.blue,
+                  child: Text(
+                    "保存二维码",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    //截图保存图片方法
+                    saveQrImage();
+                  },
+                )
               ],
             )
           ],
