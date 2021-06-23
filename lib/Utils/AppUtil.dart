@@ -1,17 +1,11 @@
-/// 使用 File api
-import 'dart:io';
+import 'package:dio/dio.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 /// 使用 Uint8List 数据类型
 import 'dart:typed_data';
 
-/// 使用 DefaultCacheManager 类（可能无法自动引入，需要手动引入）
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-
 /// 授权管理
 import 'package:permission_handler/permission_handler.dart';
-
-/// 图片缓存管理
-import 'package:cached_network_image/cached_network_image.dart';
 
 /// 保存文件或图片到本地
 import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -35,31 +29,24 @@ class AppUtil {
 
       /// 保存的图片数据
       Uint8List imageBytes;
-
       if (isAsset == true) {
         /// 保存资源图片
-        ByteData bytes = await rootBundle.load(imageUrl);
-        imageBytes = bytes.buffer.asUint8List();
+        // ByteData bytes = await rootBundle.load(imageUrl);
+        // imageBytes = bytes.buffer.asUint8List();
       } else {
-        /// 保存网络图片
-        CachedNetworkImage image = CachedNetworkImage(imageUrl: imageUrl);
-        final manager = image.cacheManager ?? DefaultCacheManager();
-        final headers = image.httpHeaders;
-        File file = await manager.getSingleFile(
-          image.imageUrl,
-          headers: headers,
-        );
-        imageBytes = await file.readAsBytes();
+        var response = await Dio()
+            .get(imageUrl, options: Options(responseType: ResponseType.bytes));
+        final result = await ImageGallerySaver.saveImage(
+            Uint8List.fromList(response.data));
+        print('result:$result');
+        if (result == null || result == '') {
+          BotToast.showSimpleNotification(title: '保存失败');
+        } else {
+          BotToast.showSimpleNotification(title: '保存成功');
+        }
       }
-
-      /// 保存图片
-      final result = await ImageGallerySaver.saveImage(imageBytes);
-
-      if (result == null || result == '') throw '图片保存失败';
-
-      print("保存成功");
     } catch (e) {
-      print(e.toString());
+      BotToast.showSimpleNotification(title: e.toString());
     }
   }
 }

@@ -7,6 +7,7 @@ import 'dart:ui' as ui;
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/rendering.dart';
+import 'package:my_app/Utils/AppUtil.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen();
@@ -19,6 +20,9 @@ class SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     super.initState();
     this.checkPermission();
+    String url =
+        "https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg";
+    AppUtil.saveImage(url);
   }
 
   GlobalKey _globalKey = new GlobalKey();
