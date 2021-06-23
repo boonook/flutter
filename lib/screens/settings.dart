@@ -22,9 +22,38 @@ class SettingsScreenState extends State<SettingsScreen> {
   final picker = ImagePicker();
 
   checkPermission() async {
-    var status = await Permission.storage.status;
+    var status = await Permission.photos.status;
     if (status.isDenied) {
-      // We didn't ask for permission yet or the permission has been denied before but not permanently.
+      print('您当前没有开启相册权限');
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('温馨提示！'),
+              content: Text('您当前没有开启相册权限，是否前往开启？'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text(
+                    '取消',
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                ),
+                FlatButton(
+                  child: Text('确认'),
+                  onPressed: () {
+                    openAppSettings();
+                  },
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                ),
+              ],
+            );
+          });
+      return;
     }
 
     ///打开应用设置：
