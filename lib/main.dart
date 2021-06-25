@@ -7,6 +7,7 @@ import 'package:my_app/screens/LoginPage.dart';
 import './screens/componentCommunication/Parents.dart';
 import 'package:my_app/screens/Flexbuju.dart';
 import 'package:my_app/screens/ScanPage.dart';
+import 'package:my_app/screens/ListCeHuaDel.dart';
 
 void main() {
   //设置安卓状态栏透明
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         "router/parents": (_) => Parents(),
         "router/flexbuju": (_) => Flexbuju(),
         "router/scan": (_) => ScanPage(),
+        "router/cehua": (_) => ListCeHuaDel(),
       },
     );
   }

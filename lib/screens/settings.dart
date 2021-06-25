@@ -150,6 +150,14 @@ class SettingsScreenState extends State<SettingsScreen> {
                 child: Text("扫一扫"),
               ),
             ),
+            Container(
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed("router/cehua");
+                },
+                child: Text("列表侧滑"),
+              ),
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center, //居中
               children: [

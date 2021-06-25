@@ -54,6 +54,8 @@ color: Color(0xFF5e12a9)
 ```
 修改环境变量
 open  ~/.bash_profile
+
+source ~/.bash_profile
 ```
 
 ```
