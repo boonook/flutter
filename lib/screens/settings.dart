@@ -158,6 +158,14 @@ class SettingsScreenState extends State<SettingsScreen> {
                 child: Text("列表侧滑"),
               ),
             ),
+            Container(
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed("router/datePicker");
+                },
+                child: Text("时间选择器"),
+              ),
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center, //居中
               children: [
