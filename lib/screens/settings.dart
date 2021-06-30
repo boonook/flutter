@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -8,6 +9,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_app/Utils/AppUtil.dart';
+import 'package:my_app/generated/l10n.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen();
@@ -23,6 +25,7 @@ class SettingsScreenState extends State<SettingsScreen> {
     String url =
         "https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg";
     AppUtil.saveImage(url);
+    print('setting修改前语言环境:${Intl.getCurrentLocale()}');
   }
 
   GlobalKey _globalKey = new GlobalKey();
@@ -111,7 +114,7 @@ class SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("设置"),
+        title: Text("设置" + S.of(context).aboutme),
       ),
       body: Center(
         child: Column(

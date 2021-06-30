@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:core';
+import 'package:intl/intl.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:my_app/Store/counter.dart';
 import 'package:my_app/Config/Contant.dart';
 import 'package:my_app/Utils/http.dart';
+import 'package:my_app/generated/l10n.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen();
@@ -67,111 +69,142 @@ class LoginScreenState extends State<LoginScreen> {
     print(counter.userToken);
   }
 
+  void _changeLanguage() async {
+    print('修改前语言环境:${Intl.getCurrentLocale()}');
+    await S.load(Locale('zh'));
+    //setState刷新页面改变语言
+    setState(() {});
+    print('修改后语言环境:${Intl.getCurrentLocale()}');
+  }
+
+  void _changeEngLanguage() async {
+    print('修改前语言环境:${Intl.getCurrentLocale()}');
+    await S.load(Locale('en'));
+    //setState刷新页面改变语言
+    setState(() {});
+    print('修改后语言环境:${Intl.getCurrentLocale()}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("登陆"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            new Text("点击跳转"),
-            new RaisedButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacementNamed("router/home");
-                // print(phone);
-              },
-              child: Text("跳转"),
-            ),
-            new RaisedButton(
-              onPressed: () {
-                getToken();
-                // print(phone);
-              },
-              child: Text("重新加载"),
-            ),
-            Container(
-              child: Column(
-                children: <Widget>[
-                  const Text('状态管理器'),
-                  Observer(
-                    builder: (_) => Text(
-                      '${counter.value}',
-                      style: const TextStyle(fontSize: 40),
-                    ),
-                  ),
-                  ElevatedButton(
-                      onPressed: counter.increment,
-                      child: const Text('Add Counter')),
-                ],
+        appBar: AppBar(
+          title: Text("登陆" + S.of(context).home),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              new Text("点击跳转"),
+              new RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed("router/home");
+                  // print(phone);
+                },
+                child: Text("跳转"),
               ),
-            ),
-            Container(
-              child: Column(
-                children: <Widget>[
+              new RaisedButton(
+                onPressed: () {
+                  getToken();
+                  // print(phone);
+                },
+                child: Text("重新加载"),
+              ),
+              new RaisedButton(
+                onPressed: () {
+                  _changeLanguage();
+                  // print(phone);
+                },
+                child: Text("中文"),
+              ),
+              new RaisedButton(
+                onPressed: () {
+                  _changeEngLanguage();
+                  // print(phone);
+                },
+                child: Text("英文"),
+              ),
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    const Text('状态管理器'),
+                    Observer(
+                      builder: (_) => Text(
+                        '${counter.value}',
+                        style: const TextStyle(fontSize: 40),
+                      ),
+                    ),
+                    ElevatedButton(
+                        onPressed: counter.increment,
+                        child: const Text('Add Counter')),
+                  ],
+                ),
+              ),
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    new TextField(
+                      controller: _controller,
+                      style: TextStyle(fontSize: 16, color: kYellow),
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.phone,
+                      cursorColor: kYellow,
+                      decoration: new InputDecoration(
+                        hintText: '请输入手机号',
+                        labelText: "手机号",
+                        labelStyle: TextStyle(color: kYellow),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(
+                              color: kYellow,
+                              width: 3,
+                              style: BorderStyle.solid),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(
+                              color: kRed, width: 1, style: BorderStyle.solid),
+                        ),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          phone = value;
+                        });
+                        print(value);
+                      },
+                    ),
+                  ],
+                ),
+                margin: const EdgeInsets.only(top: 30, right: 16, left: 16),
+              ),
+              Container(
+                child: Column(children: <Widget>[
                   new TextField(
-                    controller: _controller,
+                    controller: _passwordEditingController,
                     style: TextStyle(fontSize: 16, color: kYellow),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.phone,
-                    cursorColor: kYellow,
+                    keyboardType: TextInputType.visiblePassword,
                     decoration: new InputDecoration(
-                      hintText: '请输入手机号',
-                      labelText: "手机号",
+                      hintText: '请输入密码',
+                      labelText: "密码",
                       labelStyle: TextStyle(color: kYellow),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(
                             color: kYellow, width: 3, style: BorderStyle.solid),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(
-                            color: kRed, width: 1, style: BorderStyle.solid),
-                      ),
                     ),
                     onChanged: (value) {
-                      setState(() {
-                        phone = value;
-                      });
                       print(value);
                     },
                   ),
-                ],
+                ]),
+                margin: const EdgeInsets.only(top: 30, right: 16, left: 16),
               ),
-              margin: const EdgeInsets.only(top: 30, right: 16, left: 16),
-            ),
-            Container(
-              child: Column(children: <Widget>[
-                new TextField(
-                  controller: _passwordEditingController,
-                  style: TextStyle(fontSize: 16, color: kYellow),
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration: new InputDecoration(
-                    hintText: '请输入密码',
-                    labelText: "密码",
-                    labelStyle: TextStyle(color: kYellow),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
-                          color: kYellow, width: 3, style: BorderStyle.solid),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    print(value);
-                  },
-                ),
-              ]),
-              margin: const EdgeInsets.only(top: 30, right: 16, left: 16),
-            ),
-            Container(
-              child: buildGrade(),
-            )
-          ],
-        ),
-      ),
-    );
+              Container(
+                child: buildGrade(),
+              )
+            ],
+          ),
+        ));
   }
 }
