@@ -77,6 +77,15 @@ class S {
       args: [],
     );
   }
+
+  String get setting {
+    return Intl.message(
+      'setting',
+      name: 'setting',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -114,7 +114,7 @@ class SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("设置" + S.of(context).aboutme),
+        title: Text(S.of(context).setting),
       ),
       body: Center(
         child: Column(

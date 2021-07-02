@@ -54,6 +54,7 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
   intl: ^0.17.0
   provider: ^5.0.0
+  pull_to_refresh: ^2.0.0
   # add this line to your dependencies
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - lib/assets/images/secondfloor.jpg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

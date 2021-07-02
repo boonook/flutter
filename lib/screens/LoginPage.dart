@@ -6,6 +6,7 @@ import 'package:my_app/Store/counter.dart';
 import 'package:my_app/Config/Contant.dart';
 import 'package:my_app/Utils/http.dart';
 import 'package:my_app/generated/l10n.dart';
+import 'package:my_app/components/basic.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen();
@@ -54,11 +55,11 @@ class LoginScreenState extends State<LoginScreen> {
   Widget buildGrade() {
     List<Widget> titles = [];
     Widget content;
-    dataList.forEach((element) {
-      titles.add(new Row(
-        children: <Widget>[new Text(element['name'])],
-      ));
-    });
+    // dataList.forEach((element) {
+    //   titles.add(new Row(
+    //     children: <Widget>[new Text(element['name'])],
+    //   ));
+    // });
     content = new Column(
       children: titles,
     );
@@ -123,6 +124,22 @@ class LoginScreenState extends State<LoginScreen> {
                   // print(phone);
                 },
                 child: Text("英文"),
+              ),
+              new RaisedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed("router/FlutterEasyrefresh");
+                },
+                child: Text("下拉刷新上拉加载"),
+              ),
+              new RaisedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return BasicExample();
+                  }));
+                },
+                child: Text("下拉刷新上拉加载22222"),
               ),
               Container(
                 child: Column(
