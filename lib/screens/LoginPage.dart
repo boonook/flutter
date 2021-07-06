@@ -7,6 +7,7 @@ import 'package:my_app/Config/Contant.dart';
 import 'package:my_app/Utils/http.dart';
 import 'package:my_app/generated/l10n.dart';
 import 'package:my_app/components/basic.dart';
+import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen();
@@ -88,6 +89,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     return Scaffold(
         appBar: AppBar(
           title: Text("登陆" + S.of(context).home),
@@ -110,6 +112,19 @@ class LoginScreenState extends State<LoginScreen> {
                   // print(phone);
                 },
                 child: Text("重新加载"),
+              ),
+              new RaisedButton(
+                onPressed: () {
+                  SystemChrome.setEnabledSystemUIOverlays([]);
+                },
+                child: Text("隐藏状态栏"),
+              ),
+              new RaisedButton(
+                onPressed: () {
+                  SystemChrome.setEnabledSystemUIOverlays(
+                      [SystemUiOverlay.top]);
+                },
+                child: Text("显示状态栏"),
               ),
               new RaisedButton(
                 onPressed: () {

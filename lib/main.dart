@@ -21,11 +21,7 @@ void main() {
   //   SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
   //     statusBarColor: Color(0x00000000), //设置为透明
   //   );
-  //   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   // }
-  // SystemChrome.setSystemUIOverlayStyle([SystemUiOverlay.top]);
-  // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
-  SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(MyApp());
 }
 
