@@ -2,23 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UISupportsDocumentBrowser</key>
-	<true/>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>App需要您的同意，才能访问您的麦克风</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App需要您的同意，才能定位您的当前位置</string>
-	<key>NSContactsUsageDescription</key>
-	<string>App需要您的同意，才能访问通讯录</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App需要您的同意，才能访问相机</string>
-	<key>NSCameraUsageDescription</key>
-	<string>App需要您的同意，才能访问相册</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -41,15 +24,30 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>App需要您的同意，才能访问相册</string>
+	<key>NSContactsUsageDescription</key>
+	<string>App需要您的同意，才能访问通讯录</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App需要您的同意，才能定位您的当前位置</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App需要您的同意，才能访问您的麦克风</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App需要您的同意，才能访问相机</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>UIStatusBarHidden</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -58,6 +56,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
