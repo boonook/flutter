@@ -89,10 +89,10 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     return Scaffold(
         appBar: AppBar(
           title: Text("登陆" + S.of(context).home),
+          brightness: Brightness.dark,
         ),
         body: Center(
           child: Column(

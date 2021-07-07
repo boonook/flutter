@@ -115,6 +115,8 @@ class SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).setting),
+        backgroundColor: Colors.blue,
+        brightness: Brightness.dark,
       ),
       body: Center(
         child: Column(

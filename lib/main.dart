@@ -3,6 +3,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'IndexPage.dart';
+import 'package:flutter/services.dart';
 import 'package:my_app/screens/account.dart';
 import 'package:my_app/screens/settings.dart';
 import 'package:my_app/screens/LoginPage.dart';
@@ -21,7 +22,10 @@ void main() {
   //     statusBarColor: Color(0x00000000), //设置为透明
   //   );
   // }
+  // SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(MyApp());
+  // SystemChrome.setEnabledSystemUIOverlays([]);
+  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
 }
 
 class MyApp extends StatelessWidget {
@@ -47,6 +51,7 @@ class MyApp extends StatelessWidget {
           ///关闭模拟器右上角的debug图标
           theme: ThemeData(
             primarySwatch: Colors.blue,
+            // brightness: Brightness.light
           ),
           localizationsDelegates: [
             GlobalMaterialLocalizations.delegate,
