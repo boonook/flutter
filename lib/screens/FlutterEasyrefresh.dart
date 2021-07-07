@@ -37,6 +37,7 @@ class FlutterEasyrefreshState extends State<FlutterEasyrefresh> {
       enableScrollWhenTwoLevel: true,
       maxOverScrollExtent: 120,
       child: Scaffold(
+        backgroundColor: Colors.blue,
         bottomNavigationBar: !_refreshController1.isTwoLevel
             ? BottomNavigationBar(
                 currentIndex: _tabIndex,
@@ -64,7 +65,8 @@ class FlutterEasyrefreshState extends State<FlutterEasyrefresh> {
                       displayAlignment: TwoLevelDisplayAlignment.fromTop,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("assets/images/secondfloor.jpg"),
+                            image:
+                                AssetImage("lib/assets/images/secondfloor.jpg"),
                             fit: BoxFit.cover,
                             // 很重要的属性,这会影响你打开二楼和关闭二楼的动画效果
                             alignment: Alignment.topCenter),
@@ -82,7 +84,8 @@ class FlutterEasyrefreshState extends State<FlutterEasyrefresh> {
                                 children: <Widget>[
                                   RaisedButton(
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      Navigator.of(context)
+                                          .pushReplacementNamed("router/home");
                                     },
                                     child: Text("点击这里返回上一页!"),
                                   ),
@@ -130,7 +133,8 @@ class FlutterEasyrefreshState extends State<FlutterEasyrefresh> {
                       child: Container(
                         child: RaisedButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            Navigator.of(context)
+                                .pushReplacementNamed("router/home");
                           },
                           child: Text("点击这里返回上一页!"),
                         ),
@@ -178,7 +182,7 @@ class TwoLevelWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/secondfloor.jpg"),
+            image: AssetImage("lib/assets/images/secondfloor.jpg"),
             // 很重要的属性,这会影响你打开二楼和关闭二楼的动画效果,关联到TwoLevelHeader,如果背景一致的情况,请设置相同
             alignment: Alignment.topCenter,
             fit: BoxFit.cover),
