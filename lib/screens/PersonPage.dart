@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/generated/l10n.dart';
 
 class PersonPage extends StatefulWidget {
   const PersonPage();
@@ -18,7 +19,7 @@ class PersonPageState extends State<PersonPage> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('个人中心'),
+          title: Text(S.of(context).home),
         ),
         body: Center(
           child: Column(

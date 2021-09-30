@@ -3,6 +3,7 @@ import 'screens/CartPage.dart';
 import 'screens/HomePage.dart';
 import 'screens/MsgPage.dart';
 import 'screens/PersonPage.dart';
+import 'package:my_app/generated/l10n.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -78,7 +79,24 @@ class _IndexPageState extends State<IndexPage> {
     return Container(
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          items: bottomNavItems,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                backgroundColor: Colors.blue,
+                title: Text('首页')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.message),
+                backgroundColor: Colors.blue,
+                title: Text('消息')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart),
+                backgroundColor: Colors.blue,
+                title: Text('购物车')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                backgroundColor: Colors.blue,
+                title: Text('个人中心')),
+          ],
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
           //点击事件
