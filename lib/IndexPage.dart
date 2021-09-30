@@ -12,22 +12,6 @@ class IndexPage extends StatefulWidget {
 
 int currentIndex = 0;
 final pages = [HomePage(), MsgPage(), CartPage(), PersonPage()];
-final List<BottomNavigationBarItem> bottomNavItems = [
-  BottomNavigationBarItem(
-      icon: Icon(Icons.home), backgroundColor: Colors.blue, title: Text('首页')),
-  BottomNavigationBarItem(
-      icon: Icon(Icons.message),
-      backgroundColor: Colors.blue,
-      title: Text('消息')),
-  BottomNavigationBarItem(
-      icon: Icon(Icons.shopping_cart),
-      backgroundColor: Colors.blue,
-      title: Text('购物车')),
-  BottomNavigationBarItem(
-      icon: Icon(Icons.person),
-      backgroundColor: Colors.blue,
-      title: Text('个人中心')),
-];
 
 class _IndexPageState extends State<IndexPage> {
   @override
@@ -83,7 +67,7 @@ class _IndexPageState extends State<IndexPage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 backgroundColor: Colors.blue,
-                title: Text('首页')),
+                title: Text(S.of(context).home)),
             BottomNavigationBarItem(
                 icon: Icon(Icons.message),
                 backgroundColor: Colors.blue,
