@@ -156,6 +156,13 @@ class LoginScreenState extends State<LoginScreen> {
                 },
                 child: Text("下拉刷新上拉加载22222"),
               ),
+              new RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed("router/webView",
+                      arguments: '通过pushName从HomePage跳转过来的');
+                },
+                child: Text("webView"),
+              ),
               Container(
                 child: Column(
                   children: <Widget>[

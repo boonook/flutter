@@ -55,6 +55,8 @@ dependencies:
   intl: ^0.17.0
   provider: ^5.0.0
   pull_to_refresh: ^2.0.0
+  connectivity: ^3.0.6
+  webview_flutter: ^2.0.6
   # add this line to your dependencies
 dev_dependencies:
   flutter_test:

@@ -38,6 +38,12 @@ class PersonPageState extends State<PersonPage> {
                 },
                 child: Text("打开侧边栏"),
               ),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed("router/networkpage");
+                },
+                child: Text("监听当前网络类型"),
+              ),
               Stack(children: <Widget>[
                 Image.network(
                     'http://img2.cxtuku.com/00/13/12/s97783873391.jpg'),

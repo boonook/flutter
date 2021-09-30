@@ -14,6 +14,8 @@ import 'package:my_app/screens/ListCeHuaDel.dart';
 import 'package:my_app/screens/DatePickerPage.dart';
 import 'package:my_app/generated/l10n.dart';
 import 'package:my_app/screens/FlutterEasyrefresh.dart';
+import 'package:my_app/screens/NetworkPage.dart';
+import 'package:my_app/screens/WebViewPage.dart';
 
 void main() {
   //设置安卓状态栏透明
@@ -83,6 +85,8 @@ class MyApp extends StatelessWidget {
             "router/cehua": (_) => ListCeHuaDel(),
             "router/datePicker": (_) => DatePickerPage(),
             "router/FlutterEasyrefresh": (_) => FlutterEasyrefresh(),
+            "router/networkpage": (_) => NetworkPage(),
+            "router/webView": (_) => WebViewPage(),
           },
         ));
   }
