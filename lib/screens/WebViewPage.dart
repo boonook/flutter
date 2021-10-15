@@ -10,7 +10,8 @@ class WebViewPage extends StatefulWidget {
 
 class _WebViewPageState extends State<WebViewPage> {
   var _controller;
-
+  final arguments;
+  _WebViewPageState({this.arguments});
   @override
   void initState() {
     super.initState();
@@ -41,7 +42,7 @@ class _WebViewPageState extends State<WebViewPage> {
     return Container(
       child: Scaffold(
           appBar: AppBar(
-            title: Text("webView"),
+            title: Text("webView${arguments['test']}"),
             centerTitle: true,
             leading: new IconButton(
                 onPressed: () => {

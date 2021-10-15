@@ -158,8 +158,8 @@ class LoginScreenState extends State<LoginScreen> {
               ),
               new RaisedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed("router/webView",
-                      arguments: '通过pushName从HomePage跳转过来的');
+                  Navigator.of(context)
+                      .pushNamed("router/webView", arguments: '123');
                 },
                 child: Text("webView"),
               ),
